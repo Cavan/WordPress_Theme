@@ -1,8 +1,11 @@
 // Rem output with px fallback
 @mixin font-size($sizeValue: 1) {
-	font-size: ($sizeValue * 16) * 1px;
-	font-size: $sizeValue * 1rem;
+	font-size: ($sizeValue * 20) * 1px;
+	font-size: $sizeValue * 1.25rem;
 }
+
+//How to calculate rem using pixels
+//Desired pixel size/Current pixel size = em/rem size 20px/16px = 1.25 rem
 
 // Center block
 @mixin center-block {
