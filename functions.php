@@ -84,6 +84,67 @@ endif;
 add_action( 'after_setup_theme', 'development_setup' );
 
 /**
+ * Register custom fonts.
+ */
+function development_fonts_url() {
+	$fonts_url = '';
+
+	/*
+	 * Translators: If there are characters in your language that are not
+	 * supported by Libre Franklin, translate this to 'off'. Do not translate
+	 * into your own language.
+	 */
+	$source_sans_pro = _x( 'on', 'Source Sans Pro font: on or off', 'development' );
+        $pt_mono = _x( 'on', 'PT Mono font: on or off', 'development' );
+
+        $font_families = array();
+        
+        if ( 'off' !== $source_sans_pro ) {
+                $font_families[] = 'Source Sans Pro:400, 400i, 700, 900';
+        }
+        
+         if ( 'off' !== $pt_mono ) {
+                $font_families[] = 'PT Mono Pro:400, 400i, 700,700i, 900';
+        }
+        
+	if ( in_array( 'on', array($source_sans_pro, $pt_mono) ) ) {
+		
+
+		$query_args = array(
+			'family' => urlencode( implode( '|', $font_families ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		);
+
+		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+	}
+
+	return esc_url_raw( $fonts_url );
+}
+
+
+/**
+ * Add preconnect for Google Fonts.
+ *
+ * @since Twenty Seventeen 1.0
+ *
+ * @param array  $urls           URLs to print for resource hints.
+ * @param string $relation_type  The relation type the URLs are printed.
+ * @return array $urls           URLs to print for resource hints.
+ */
+function development_resource_hints( $urls, $relation_type ) {
+	if ( wp_style_is( 'development-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href' => 'https://fonts.gstatic.com',
+			'crossorigin',
+		);
+	}
+
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'development_resource_hints', 10, 2 );
+
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
@@ -120,6 +181,11 @@ add_action( 'widgets_init', 'development_widgets_init' );
  * Enqueue scripts and styles.
  */
 function development_scripts() {
+    
+        //Enqueue Google fonts PT Mono, Source Sans Pro
+        wp_enqueue_style('development-fonts',development_fonts_url() );
+        
+    
 	wp_enqueue_style( 'development-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'development-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
