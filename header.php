@@ -24,12 +24,19 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'development' ); ?></a>
 
+       <?php if (is_front_page()):?>
+        <figure class="header-image">
+             <?php the_header_image_tag(); ?>
+        </figure><!-- .header-image-->
+        <?php endif; // End header image check. ?>
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
+                   
+			<?php the_custom_logo(); ?>
+                        <div class="site-branding__text">
+			<?php if ( is_front_page() && is_home() ) :
 				?>
+                   
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<?php
 			else :
@@ -42,6 +49,7 @@
 				?>
 				<p class="site-description"><?php echo $development_description; /* WPCS: xss ok. */ ?></p>
 			<?php endif; ?>
+                        </div>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
