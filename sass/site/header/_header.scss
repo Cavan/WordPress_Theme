@@ -1,4 +1,16 @@
 
+.header-image{
+    max-height: 60vh;
+    overflow: hidden;
+     
+    
+    img{
+        display: block;
+        width: 100vw;
+       
+    }
+}
+
 .site-header {
 	position: relative;
 	padding: 1em;
@@ -8,11 +20,30 @@
 	
 	@media screen and (min-width: $query__small) {
 		padding: 1em 2em;
+                
+                
 	}
 }
 
 .site-branding {
+        display:flex;
 	min-height: 65px;
+}
+
+.custom-logo-link {
+    margin-right:1em;
+    img{
+        display:block;
+        height: 95px;
+        width:auto;
+    }
+}
+
+.site-branding__text {
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    height:65px;
 }
 
 .site-title {
@@ -48,7 +79,10 @@
     
     .site-branding{
         width:35%;
+        flex: 1 0 auto;
     }
+    
+   
     
     .main-navigation{
         width:55%;
@@ -56,3 +90,8 @@
    
     
 }
+
+/*
+Header Menu
+*/
+@import "header-menu";

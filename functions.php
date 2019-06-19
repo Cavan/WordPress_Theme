@@ -44,7 +44,8 @@ if ( ! function_exists( 'development_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'development' ),
+			'menu-1' => esc_html__( 'Header', 'development' ),
+                        'social' => esc_html__( 'Social Media Menu', 'development' ),
 		) );
 
 		/*
@@ -74,10 +75,10 @@ if ( ! function_exists( 'development_setup' ) ) :
 		 * @link https://codex.wordpress.org/Theme_Logo
 		 */
 		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
+			'height'      => 90,
+			'width'       => 90,
 			'flex-width'  => true,
-			'flex-height' => true,
+			//'flex-height' => true,
 		) );
 	}
 endif;
@@ -188,7 +189,12 @@ function development_scripts() {
     
 	wp_enqueue_style( 'development-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'development-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'development-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
+        wp_localize_script('development-navigation', 'developmentScreenReaderText', array(
+        'expand' => __('Expand child menu', 'development'),
+        'collapse' => __('Collapse child menu', 'development')   
+     ));
+     
 
 	wp_enqueue_script( 'development-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
