@@ -21,7 +21,13 @@ function development_body_classes( $classes ) {
 	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 		$classes[] = 'no-sidebar';
 	}
-
+         if (is_active_sidebar('sidebar-1'))
+        {
+            $classes[] = 'has-sidebar';
+        }else{
+            $classes[] = 'no-sidebar';
+        }
+     
 	return $classes;
 }
 add_filter( 'body_class', 'development_body_classes' );

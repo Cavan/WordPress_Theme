@@ -161,3 +161,17 @@ if ( ! function_exists( 'development_post_thumbnail' ) ) :
 		endif; // End is_singular().
 	}
 endif;
+
+/**
+ * Post navigation (previous / next post) for single posts.
+ */
+function development_post_navigation() {
+	the_post_navigation( array(
+		'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'development' ) . '</span> ' .
+			'<span class="screen-reader-text">' . __( 'Next post:', 'development' ) . '</span> ' .
+			'<span class="post-title">%title</span>',
+		'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'development' ) . '</span> ' .
+			'<span class="screen-reader-text">' . __( 'Previous post:', 'development' ) . '</span> ' .
+			'<span class="post-title">%title</span>',
+	) );
+}
