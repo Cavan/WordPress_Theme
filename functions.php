@@ -41,7 +41,8 @@ if ( ! function_exists( 'development_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
-
+                add_image_size('development-full-bleed', 2000, 1200, true);
+                add_image_size('development-index-img', 800, 450, true);
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Header', 'development' ),
@@ -175,6 +176,17 @@ function development_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+        
+        //Custom widget 
+        register_sidebar( array(
+		'name'          => esc_html__( 'Footer-Widgets', 'development' ),
+		'id'            => 'sidebar-2',
+		'description'   => esc_html__( 'Add footer widgets here.', 'development' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 }
 add_action( 'widgets_init', 'development_widgets_init' );
 
@@ -195,6 +207,8 @@ function development_scripts() {
         'collapse' => __('Collapse child menu', 'development')   
      ));
      
+wp_enqueue_script( 'development-functions', get_template_directory_uri() . '/js/functions.js', array('jquery'), '20190621', true );
+
 
 	wp_enqueue_script( 'development-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
@@ -217,7 +231,7 @@ require get_template_directory() . '/inc/template-tags.php';
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.
@@ -230,4 +244,5 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
 

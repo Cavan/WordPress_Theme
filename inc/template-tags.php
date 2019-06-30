@@ -161,3 +161,38 @@ if ( ! function_exists( 'development_post_thumbnail' ) ) :
 		endif; // End is_singular().
 	}
 endif;
+
+/**
+ * Post navigation (previous / next post) for single posts.
+ */
+function development_post_navigation() {
+	the_post_navigation( array(
+		'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'development' ) . '</span> ' .
+			'<span class="screen-reader-text">' . __( 'Next post:', 'development' ) . '</span> ' .
+			'<span class="post-title">%title</span>',
+		'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'development' ) . '</span> ' .
+			'<span class="screen-reader-text">' . __( 'Previous post:', 'development' ) . '</span> ' .
+			'<span class="post-title">%title</span>',
+	) );
+}
+
+/**
+ * Customize ellipsis at the end of the excerpt
+ */
+
+function development_excerpt_more($more){
+    return "...";
+}
+add_filter('excerpt_more', 'development_excerpt_more');
+
+
+/**
+ * Filter excerpt length to 100 words
+ */
+function development_excerpt_length($length) {
+    return 100;
+}
+add_filter('excerpt_length', 'development_excerpt_length');
+
+
+
