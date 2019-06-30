@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package development
+ * @package Development
  */
 
 /**
@@ -22,14 +22,16 @@ function development_body_classes( $classes ) {
 	// Adds a class of hfeed to non-singular pages.
 	if ( ! is_singular() ) {
 		$classes[] = 'hfeed';
+                $classes[] = 'archive-view';
 	}
-        if (is_active_sidebar('sidebar-1'))
-        {
-            $classes[] = 'has-sidebar';
-        }else{
-            $classes[] = 'no-sidebar';
-        }
-        echo "<h1>Extras.php WTF";
+	
+	// Add a class telling us if the sidebar is in use.
+	if ( is_active_sidebar( 'sidebar-1' ) ) {
+		$classes[] = 'has-sidebar';
+	} else {
+		$classes[] = 'no-sidebar';
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'development_body_classes' );
@@ -37,9 +39,9 @@ add_filter( 'body_class', 'development_body_classes' );
 /**
  * Add a pingback url auto-discovery header for singularly identifiable articles.
  */
-//function development_pingback_header() {
-//	if ( is_singular() && pings_open() ) {
-//		echo '<link rel="pingback" href="', bloginfo( 'pingback_url' ), '">';
-//	}
-//}
-//add_action( 'wp_head', 'development_pingback_header' );
+function development_pingback_header() {
+	if ( is_singular() && pings_open() ) {
+		echo '<link rel="pingback" href="', bloginfo( 'pingback_url' ), '">';
+	}
+}
+add_action( 'wp_head', 'development_pingback_header' );

@@ -42,6 +42,7 @@ if ( ! function_exists( 'development_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
                 add_image_size('development-full-bleed', 2000, 1200, true);
+                add_image_size('development-index-img', 800, 450, true);
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Header', 'development' ),
@@ -230,7 +231,7 @@ require get_template_directory() . '/inc/template-tags.php';
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.
