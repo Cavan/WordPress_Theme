@@ -81,6 +81,8 @@ if ( ! function_exists( 'development_setup' ) ) :
 			'flex-width'  => true,
 			//'flex-height' => true,
 		) );
+                /* Editor styles */
+                add_editor_style(array('inc/editor-styles', development_fonts_url()));
 	}
 endif;
 add_action( 'after_setup_theme', 'development_setup' );
