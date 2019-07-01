@@ -1,3 +1,47 @@
+# WordPress Theme for InceptionCoding.com
+
+The purpose of this project is to create a custom theme for my personal website to present current projects , resumes, software products / solutions for sale, and a blog related to software development topics.
+
+
+
+## Development Environment
+
+The tools and environment used to develop this theme are as follows:
+
+- WordPress Install Running on the WAMP Server
+- PHP 7.2
+- MySQL 5.6
+- IDE used is NetBeans 8.2
+- GULP Task Manager
+  - The task manager is used to update the browser and check CSS code for any errors. The browser is updated anytime there is a change saved in the editor.
+- The CSS is not directly written, instead SASS is used, and combine multiple .scss files to compile into the style.css for the site.
+
+
+
+## Starter Theme
+
+The theme was built using _S (Underscores) starter theme https://underscores.me/
+
+
+
+
+
+## To-Do:
+
+- [x] Develop basic theme.
+- [x] Add features to WordPress customizer.
+- [ ] Redo the site navigation and optimize for mobile devices.
+- [ ] Develop a GitHub Plugin.
+- [ ] Deploy to live server.
+
+
+
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+
+# _Underscores README
+
 [![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)
 
 _s
